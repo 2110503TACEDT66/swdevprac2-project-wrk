@@ -13,7 +13,7 @@ export default  async function CarCatalog({carJson} : {carJson:object}){
                {
                     carJsonRedy.data.map((carItem:Object) => (
                         <Link href={`/car/${carItem.id}`} className="w-1/5">
-                            <ProductCard carName={carItem.model} imgSrc={carItem.picture}/>
+                            <ProductCard carName={carItem.name} imgSrc={carItem.picture}/>
                         </Link>
                     ))
                 }
