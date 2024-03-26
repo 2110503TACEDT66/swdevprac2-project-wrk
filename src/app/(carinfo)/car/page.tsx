@@ -1,28 +1,27 @@
 import getCoworks from '@/libs/getCoworks';
 import CoworkCatalog from '@/components/CoworkCatalog';
-import {Suspense} from 'react';
-import {LinearProgress} from '@mui/material';
-import {coworkObj} from '../../../components/CoworkCatalog';
-export default function Cowork() {
+import CoWork from '@/components/Addcoworks';
+import {getServerSession} from 'next-auth';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
+import getUserProfile from '@/libs/getUserProfile';
+
+export default async function AllCoWork() {
 	const Coworks = getCoworks();
+
+	const session = await getServerSession(authOptions);
+	if (!session || !session.user.token) return null;
+
+	const proflie = await getUserProfile(session.user.token);
+
+	var Role = null;
+
+	if (proflie.data.role === 'admin') Role = 1;
 
 	return (
 		<main className="text-center p-5">
 			<h1 className="text-xl font-medium">Select Your Co-Working Space</h1>
-			<Suspense
-				fallback={
-					<p>
-						Loading ...
-						<LinearProgress />
-					</p>
-				}
-			>
-				<CoworkCatalog coworkJson={Coworks} />
-			</Suspense>
-
-			{/* <hr className="my-10 "/>
-            <h1 className="text-xl font-medium">TRY Client-side Car Panel</h1>
-            <CarPanel/> */}
+			<CoworkCatalog CoworkJson={Coworks} />
+			{Role ? <CoWork /> : null}
 		</main>
 	);
 }
