@@ -35,7 +35,7 @@ export default function Banner() {
 				placeholder="empty"
 				className="position-absolute -z-50"
 			/>
-			<div className="text-center w-[100vw] m-5 color-black   dark:color-white">
+			<div className="text-center m-[5%] color-black content-center justify-center item-center">
 				<p className="p-[5%] text-xl font-semibold md:text-3xl">
 					Find Your Lovely Co-Working Space
 				</p>
@@ -44,14 +44,12 @@ export default function Banner() {
 					- Elbert Hubbard
 				</p>
 				{session ? (
-					<div>
-						<div className="z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl">
+					<div className="w-[100%] h-[50%] item-center text-center">
+						<div className="z-50 mt-[15%] text-center font-semibold text-black text-xl">
 							Hello {session.user?.name}
 						</div>
 						<button
-							className="bg-white text-cyan-600 border border-cyan-600
-            font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-0 right-0
-            hover:bg-cyan-600 hover:text-white hover:border-transparent"
+							className="bg-white m-[3%] px-[2%] text-orange-600 border border-[2px] border-gray-600 font-semibold p-2 m-2 rounded z-30 content-center hover:bg-gray-600 hover:text-white hover:border-transparent"
 							onClick={(e) => {
 								e.stopPropagation();
 								router.push('/car');
