@@ -1,13 +1,36 @@
-'use client';
-import {useState, ChangeEvent, FormEvent} from 'react';
-import styles from './RegisterPage.module.css'; // Import CSS module for styling
-import router from 'next/router';
-import Link from 'next/link';
+import User from '@/db/models/User';
+import {dbConnect} from '@/db/dbConnect';
+import {revalidateTag} from 'next/cache';
+import {redirect} from 'next/navigation';
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+	const addUser = async (addUserForm: FormData) => {
+		'use server';
+		const name = addUserForm.get('name');
+		const email = addUserForm.get('email');
+		const password = addUserForm.get('password');
+		const tel = addUserForm.get('tel');
+		const role = addUserForm.get('role');
+
+		try {
+			await dbConnect();
+			const user = await User.create({
+				name: name,
+				email: email,
+				password: password,
+				tel: tel,
+				role: role,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+		revalidateTag('users');
+		redirect('/api/auth/signin');
+	};
+
 	return (
 		<div className="flex flex-col w-[100vw] h-[100vh] ml-[25%] mt-[5%]">
-			<form className="w-[100%] h-[80%] ">
+			<form action={addUser} className="w-[100%] h-[80%] ">
 				<div className=" text-2xl text-orange-700 font-semibold my-[2%]">
 					Register
 				</div>
@@ -93,7 +116,7 @@ export default function RegisterPage() {
 				</div>
 				<button
 					type="submit"
-					className=" w-[50%] my-[2%] bg-orange-500 hover:bg-orange-700 text-white text-center rounded"
+					className=" w-[50%] my-[2%] p-2 bg-orange-500 hover:bg-orange-700 text-white text-center rounded"
 				>
 					Register
 				</button>
