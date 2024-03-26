@@ -25,7 +25,7 @@ export default async function RegisterPage() {
 		} catch (error) {
 			console.log(error);
 		}
-		revalidateTag('users');
+		revalidateTag('User');
 		redirect('/api/auth/signin');
 	};
 
