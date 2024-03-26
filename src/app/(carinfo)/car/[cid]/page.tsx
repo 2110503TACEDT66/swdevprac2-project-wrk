@@ -1,13 +1,18 @@
 import Image from 'next/image';
 import getCowork from '@/libs/getCowork';
 import Link from 'next/link';
+import {getServerSession} from 'next-auth';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
+import getUserProfile from '@/libs/getUserProfile';
+import UpdateCoWork from '@/components/UpdateCoWork'
 
-export default async function CoworkDetailPage({
-	params,
-}: {
-	params: {cid: string};
-}) {
+export default async function CoworkDetailPage({params}: {params: {cid: string}}) {
 	const CoworkDetail = await getCowork(params.cid);
+
+	const session = await getServerSession(authOptions);
+	if (!session || !session.user.token) return null;
+
+	const proflie = await getUserProfile(session.user.token);
 	return (
 		<main className="text-center p-5">
 			<h1 className="text-lg font-medium">{CoworkDetail.data.name}</h1>
@@ -40,6 +45,10 @@ export default async function CoworkDetailPage({
                 </Link>
 				</div>
 			</div>
+			{
+				(proflie.data.role === 'admin')?
+				<UpdateCoWork CoworkDetail ={CoworkDetail} params={params} />: null
+			}
 		</main>
 	);
 }
