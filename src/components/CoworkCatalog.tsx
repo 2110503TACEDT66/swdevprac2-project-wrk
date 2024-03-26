@@ -46,7 +46,7 @@ interface coworkItem {
 export default async function CoworkCatalog({
 	coworkJson,
 }: {
-	coworkJson: coworkObj;
+	coworkJson: Promise<coworkObj>;
 }) {
 	const coworkJsonRedy = await coworkJson;
 
