@@ -4,7 +4,12 @@ import styles from './RegisterPage.module.css'; // Import CSS module for styling
 import router from 'next/router';
 import Link from 'next/link';
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+
+	const addCoWork = async (addCoWorkForm:FormData) => {
+		"use server"
+	}
+
 	return (
 		<form className="my-[10%] mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-orange-500 font-medium m-5">New Co-Working Space</div>
