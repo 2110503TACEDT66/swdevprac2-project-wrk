@@ -1,10 +1,10 @@
-import getCars from '@/libs/getCars';
-import CarCatalog from '@/components/CarCatalog';
+import getCoworks from '@/libs/getCoworks';
+import CoworkCatalog from '@/components/CoworkCatalog';
 import {Suspense} from 'react';
 import {LinearProgress} from '@mui/material';
-
-export default function Car() {
-	const cars = getCars();
+import {coworkObj} from '../../../components/CoworkCatalog';
+export default function Cowork() {
+	const Coworks = getCoworks();
 
 	return (
 		<main className="text-center p-5">
@@ -17,7 +17,7 @@ export default function Car() {
 					</p>
 				}
 			>
-				<CarCatalog carJson={cars} />
+				<CoworkCatalog coworkJson={Coworks} />
 			</Suspense>
 
 			{/* <hr className="my-10 "/>

@@ -1,7 +1,7 @@
 import ProductCard from './ProductCard';
 import Link from 'next/link';
 
-interface coworkObj {
+export interface coworkObj {
 	success: boolean;
 	count: number;
 	pagination: Record<string, any>; // Since the structure is unknown
@@ -12,7 +12,7 @@ interface coworkItem {
 	success: boolean;
 	count: number;
 	pagination: Record<string, any>; // Since the structure is unknown
-	data: any[];
+	data: reservationItem[];
 }
 interface reservationItem {
 	_id: string;
@@ -43,7 +43,7 @@ interface coworkItem {
 	id: string;
 }
 
-export default async function CarCatalog({
+export default async function CoworkCatalog({
 	coworkJson,
 }: {
 	coworkJson: coworkObj;
