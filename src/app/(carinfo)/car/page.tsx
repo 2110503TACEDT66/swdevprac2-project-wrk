@@ -13,15 +13,15 @@ export default async function AllCoWork() {
 
 	const proflie = await getUserProfile(session.user.token);
 
-	var Role = null;
-
-	if (proflie.data.role === 'admin') Role = 1;
 
 	return (
 		<main className="text-center">
 			<div className="text-3xl font-medium text-orange-500 m-5">Choose your way of working</div>
 			<CoworkCatalog CoworkJson={Coworks} />
-			{Role ? <CoWork /> : null}
+			{
+				(proflie.data.role === 'admin')?
+				<CoWork /> : null
+			}
 		</main>
 	);
 }
