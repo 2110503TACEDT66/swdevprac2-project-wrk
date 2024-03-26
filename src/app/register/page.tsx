@@ -1,127 +1,90 @@
-import User from '@/db/models/User';
-import {dbConnect} from '@/db/dbConnect';
-import {revalidateTag} from 'next/cache';
-import {redirect} from 'next/navigation';
+'use client';
+import {Button, TextField} from '@mui/material';
+import userRegister from '@/libs/userRegister';
+import userLogin from '@/libs/userLogin';
+import {useState} from 'react';
+import {useRouter} from 'next/navigation';
+import {FormControl} from '@mui/material';
+import {InputLabel} from '@mui/material';
+import {OutlinedInput} from '@mui/material';
 
-export default async function RegisterPage() {
-	const addUser = async (addUserForm: FormData) => {
-		'use server';
-		const name = addUserForm.get('name');
-		const email = addUserForm.get('email');
-		const password = addUserForm.get('password');
-		const tel = addUserForm.get('tel');
-		const role = addUserForm.get('role');
-
+export default function RegisterPage() {
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [tel, setTel] = useState('');
+	const router = useRouter();
+	const handleSignUp = async () => {
+		console.log(name, email, password, tel);
 		try {
-			await dbConnect();
-			const user = await User.create({
-				name: name,
-				email: email,
-				password: password,
-				tel: tel,
-				role: role,
-			});
-			console.log(user);
+			await userRegister(name, email, password, tel);
+			alert('Register success');
+			router.push('/api/auth/signin');
 		} catch (error) {
-			console.log(error);
+			alert('Register failed');
+			console.error('Register failed', error);
+			console.log('error');
 		}
-		revalidateTag('User');
-		redirect('/api/auth/signin');
 	};
 
 	return (
-		<div className="flex flex-col w-[100vw] h-[100vh] ml-[25%] mt-[5%]">
-			<form action={addUser} className="w-[100%] h-[80%] ">
-				<div className=" text-2xl text-orange-700 font-semibold my-[2%]">
-					Register
-				</div>
-				<div className="flex items-center w-1/2 my-2 ">
-					<label
-						className="w-[200px] block text-gray-700 text-right pr-[5%]"
-						htmlFor="name"
-					>
-						Name
-					</label>
-					<input
-						type="text"
-						required
-						id="name"
-						name="name"
-						placeholder="username"
-						className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-orange-400"
-					/>
-				</div>
-				<div className="flex items-center w-1/2 my-2">
-					<label
-						className="w-[200px] block text-gray-700 text-right pr-[5%]"
-						htmlFor="email"
-					>
-						Email
-					</label>
-					<input
-						type="text"
-						required
-						id="email"
-						name="email"
-						placeholder="email"
-						className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-orange-400"
-					/>
-				</div>
-				<div className="flex items-center w-1/2 my-2">
-					<label
-						className="w-[200px] block text-gray-700 text-right pr-[5%]"
-						htmlFor="password"
-					>
-						Password
-					</label>
-					<input
-						type="password"
-						required
-						id="password"
-						name="password"
-						placeholder="password"
-						className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-orange-400"
-					/>
-				</div>
-				<div className="flex items-center w-1/2 my-2">
-					<label
-						className="w-[200px] block text-gray-700 text-right pr-[5%]"
-						htmlFor="tel"
-					>
-						Tel
-					</label>
-					<input
-						type="text"
-						required
-						id="tel"
-						name="tel"
-						placeholder="tel"
-						className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-orange-400"
-					/>
-				</div>
-				<div className="flex items-center w-1/2 my-2">
-					<label
-						className="w-[200px] block text-gray-700 text-right pr-[5%]"
-						htmlFor="role"
-					>
-						Role
-					</label>
-					<input
-						type="text"
-						id="role"
-						name="role"
-						value="user"
-						readOnly
-						className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-orange-400"
-					/>
-				</div>
-				<button
-					type="submit"
-					className=" w-[50%] my-[2%] p-2 bg-orange-500 hover:bg-orange-700 text-white text-center rounded"
-				>
-					Register
-				</button>
-			</form>
+		<div className="flex flex-col items-center w-[100vw] rounded-lg">
+			<h1 className="m-5 text-black text-2xl font-semibold text-center">
+				Register
+			</h1>
+			<div className="m-5 w-1/3">
+				<TextField
+					variant="outlined"
+					label="Name"
+					value={name}
+					onChange={(e) => {
+						setName(e.target.value);
+					}}
+					placeholder="username"
+					className="w-full"
+				/>
+			</div>
+			<div className="m-5 w-1/3">
+				<TextField
+					variant="outlined"
+					label="Email"
+					value={email}
+					onChange={(e) => {
+						setEmail(e.target.value);
+					}}
+					placeholder="example@domain"
+					className="w-full"
+				/>
+			</div>
+			<div className="m-5 w-1/3">
+				<TextField
+					variant="outlined"
+					label="Password"
+					value={password}
+					type="password"
+					onChange={(e) => setPassword(e.target.value)}
+					placeholder="password at least 6 characters"
+					className="w-full"
+				/>
+			</div>
+			<div className="m-5 w-1/3">
+				<TextField
+					variant="outlined"
+					label="Tel."
+					value={tel}
+					onChange={(e) => {
+						setTel(e.target.value);
+					}}
+					placeholder="000-000-0000"
+					className="w-full"
+				/>
+			</div>
+			<button
+				onClick={handleSignUp}
+				className="bg-orange-400 m-5 p-3 px-5 text-black-500 border border-orange-500 rounded rounded-xl hover:bg-gray-500 hover:text-white hover:border-transparent "
+			>
+				Register
+			</button>
 		</div>
 	);
 }

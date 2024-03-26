@@ -2,8 +2,7 @@ export default async function userRegister(
 	userName: string,
 	userEmail: string,
 	userPassword: string,
-	userTel: string,
-	userRole: string
+	userTel: string
 ) {
 	const response = await fetch('http://localhost:5050/api/v1/auth/register', {
 		method: 'POST',
@@ -15,7 +14,6 @@ export default async function userRegister(
 			email: userEmail,
 			password: userPassword,
 			tel: userTel,
-			role: userRole,
 		}),
 	});
 
