@@ -86,7 +86,7 @@ export default function LocationDateReserve({onDateChange, onStartChange, onEndC
                         {start_time < "24:00" ? <MenuItem value="24:00">24:00</MenuItem> : null}
 
                     </Select>)
-                    : (end_time !== "end" ? setEndTime("end") : null)
+                    :  null
                 } 
         </div>
         
