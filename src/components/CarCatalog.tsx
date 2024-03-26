@@ -6,7 +6,6 @@ export default async function CarCatalog({carJson}: {carJson: object}) {
 
 	return (
 		<>
-			Explore {carJsonRedy.count} co-working space in our catalog
 			<div
 				style={{
 					margin: '20px',
