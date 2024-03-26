@@ -1,17 +1,50 @@
-'use client';
 import {useState, ChangeEvent, FormEvent} from 'react';
 import styles from './RegisterPage.module.css'; // Import CSS module for styling
 import router from 'next/router';
 import Link from 'next/link';
+import CoWork from '@/db/models/CoWork';
+import { dbConnect } from '@/db/dbConnect';
+import { revalidateTag } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export default async function RegisterPage() {
 
 	const addCoWork = async (addCoWorkForm:FormData) => {
 		"use server"
+		const name = addCoWorkForm.get("Name")
+        const address= addCoWorkForm.get("Address")
+        const district= addCoWorkForm.get("District")
+        const province= addCoWorkForm.get("Province")
+        const postalcode= addCoWorkForm.get("Postalcode")
+        const region= addCoWorkForm.get("Region")
+        const tel= addCoWorkForm.get("Tel")
+        const Open_time = addCoWorkForm.get("Open-time")
+        const Close_time= addCoWorkForm.get("Close-time")
+        const picture= addCoWorkForm.get("Picture")
+
+		try{
+			await dbConnect()
+			const coWork = await CoWork.create({
+				name:  name,
+            	address: address,
+            	district: district,
+            	province: province,
+            	postalcode: postalcode,
+            	region: region,
+            	tel: tel,
+            	Open_time :Open_time,
+            	Close_time :Close_time,
+            	picture :picture
+			})
+		}catch(error){
+			console.log(error)
+		}
+		revalidateTag("coWorks")
+		redirect("/car")
 	}
 
 	return (
-		<form className="my-[10%] mx-[25%] w-[80%] h-[60%]">
+		<form action={addCoWork} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-orange-500 font-medium m-5">New Co-Working Space</div>
 			<div className="flex items-center w-1/2 my-2 ">
 				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Name">
@@ -80,7 +113,7 @@ export default async function RegisterPage() {
 			</div>
 			<div className="flex items-center w-1/2 my-2 ">
 				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Region">
-				Postalcode
+				Region
 				</label>
 				<input
 					type="text"
