@@ -20,7 +20,7 @@ export default async function TopMenu() {
 					sizes="100vh"
 				/>
 			</Link>
-			<TopMenuItem title="Reservation" pageRef="/reservations" />
+			<TopMenuItem title="Reservation" pageRef="/cart" />
 			<TopMenuItem title="About" pageRef="/about" />
 			{session ? (
 				<Link href="/api/auth/signout">
