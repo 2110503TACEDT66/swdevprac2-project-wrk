@@ -1,12 +1,13 @@
 'use client'
 import LocationDateReserve from "@/components/LocationDateReserve";
 import { useSearchParams } from "next/navigation";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { addReservation } from "@/redux/feature/carSlice";
 import { ReservationItem } from "../../../interface";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Reservations(){
 
@@ -21,13 +22,13 @@ export default function Reservations(){
     const dispatch = useDispatch<AppDispatch>()
 
     const makeReservation = () => {
-        if(cid && name && start_time && end_time){
+        if(cid && name && start_time !== "start" && end_time !== "end"){
             const item:ReservationItem = {
                 _id : cid,
                 name : name,       
                 start_time: start_time,
-                end_time: end_time  
-
+                end_time: end_time,
+				date: dayjs(reserveDate).format("YYYY/MM/DD")
             }
             dispatch(addReservation(item))
         }
@@ -40,19 +41,20 @@ export default function Reservations(){
 
             <div className="w-fit space-y-3">
                 <div className="text-md text-left text-gray-600">Booking</div>
-                <LocationDateReserve onDateChange={(value:Dayjs) => {setReserveDate(value)}}
+                <LocationDateReserve onDateChange={(value:Dayjs) => {setReserveDate(value);}}
             onStartChange={(value:string) => setStartTime(value)} onEndChange={(value:string) => setEndTime(value)}/>
             </div>
 
             {
             end_time == "end"? <button className='bg-orange-500 hover:bg-orange-700 text-white font-bold 
             py-2 px-4 rounded cursor-not-allowed'>
-                Reservetion
+                Reservation
             </button>
-            :<button className='bg-orange-500 hover:bg-orange-700 text-white font-bold 
-            py-2 px-4 rounded' onClick={()=>{alert("Finish Reservation"),makeReservation}}>
-                Reservetion
+            :<Link href="/cart"><button className='bg-orange-500 hover:bg-orange-700 text-white font-bold 
+            py-2 px-4 rounded' onClick={makeReservation} >
+                Reservation
             </button>
+			</Link>
         }
 
         </main>

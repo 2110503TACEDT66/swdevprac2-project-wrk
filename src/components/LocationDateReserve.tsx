@@ -20,12 +20,12 @@ export default function LocationDateReserve({onDateChange, onStartChange, onEndC
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker className="bg-white" 
                     value={reserveDate}
-                    onChange={(value) => {setReserveDate(value); onDateChange(value)}}/>
+                    onChange={(value) => {setReserveDate(value); onDateChange(value);}}/>
                 </LocalizationProvider>
 
                 <Select variant="standard"
                 name="start_time" id="start_time" value={start_time}
-                onChange={(e)=>{setStartTime(e.target.value);onStartChange(e.target.value)}}
+                onChange={(e)=>{setStartTime(e.target.value);onStartChange(e.target.value);}}
                 className="h-[2em] w-[200px]">
                     <MenuItem value="start">Select Start Time</MenuItem>
                     <MenuItem value="00:00">00:00</MenuItem>
@@ -57,7 +57,7 @@ export default function LocationDateReserve({onDateChange, onStartChange, onEndC
                 {
                     start_time !== "start"? (<Select variant="standard" 
                     name="end_time" id="end_time" value={end_time}
-                    onChange={(e)=>{setEndTime(e.target.value); onEndChange(e.target.value)}}
+                    onChange={(e)=>{setEndTime(e.target.value); onEndChange(e.target.value);}}
                     className="h-[2em] w-[200px]">
                         <MenuItem value="end">Select End Time</MenuItem>
                         {start_time < "01:00" ? <MenuItem value="01:00">01:00</MenuItem> : null}
