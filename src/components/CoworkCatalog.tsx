@@ -52,7 +52,7 @@ export default async function CarCatalog({
 
 	return (
 		<>
-			Explore {carJsonRedy.count} models in our catalog
+			Explore {carJsonRedy.count} coWorks in our catalog
 			<div
 				style={{
 					margin: '20px',
