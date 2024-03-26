@@ -1,27 +1,60 @@
-import LocationDateReserve from '@/components/LocationDateReserve';
+'use client'
+import LocationDateReserve from "@/components/LocationDateReserve";
+import { useSearchParams } from "next/navigation";
+import { Dayjs } from "dayjs";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { addReservation } from "@/redux/feature/carSlice";
+import { ReservationItem } from "../../../interface";
+import { useState } from "react";
 
-export default function Reservations() {
-	return (
-		<main className="w-[100%] flex flex-col items-center space-y-4">
-			<div className="text-xl font-medium">New Reservation</div>
+export default function Reservations(){
 
-			<div className="w-fit space-y-2">
-				<div className="text-md text-left text-gray-60">
-					Pick-Up Date and Location
-				</div>
-				<LocationDateReserve />
-				<div className="text-md text-left text-gray-60">
-					Return Date and Location
-				</div>
-				<LocationDateReserve />
-			</div>
+    const urlParams = useSearchParams()
+    const cid = urlParams.get('id')
+    const name = urlParams.get('name')
 
-			<button
-				className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2
-            text-white shadow-sm"
-			>
-				Check Co-Working Space Availability
-			</button>
-		</main>
-	);
-}
+    const [reserveDate, setReserveDate] = useState<Dayjs|null>(null)
+    const [start_time,setStartTime] = useState<string>("start")
+    const [end_time,setEndTime] = useState<string>("end")
+
+    const dispatch = useDispatch<AppDispatch>()
+
+    const makeReservation = () => {
+        if(cid && name && start_time && end_time){
+            const item:ReservationItem = {
+                _id : cid,
+                name : name,       
+                start_time: start_time,
+                end_time: end_time  
+
+            }
+            dispatch(addReservation(item))
+        }
+    }
+
+    return (
+        <main className="w-[100%] flex flex-col items-center space-y-4">
+            <div className="text-xl font-medium">New Reservation</div>
+            <div className="text-xl font-medium">{name}</div>
+
+            <div className="w-fit space-y-3">
+                <div className="text-md text-left text-gray-600">Booking</div>
+                <LocationDateReserve onDateChange={(value:Dayjs) => {setReserveDate(value)}}
+            onStartChange={(value:string) => setStartTime(value)} onEndChange={(value:string) => setEndTime(value)}/>
+            </div>
+
+            {
+            end_time == "end"? <button className='bg-orange-500 hover:bg-orange-700 text-white font-bold 
+            py-2 px-4 rounded cursor-not-allowed'>
+                Reservetion
+            </button>
+            :<button className='bg-orange-500 hover:bg-orange-700 text-white font-bold 
+            py-2 px-4 rounded' onClick={()=>{alert("Finish Reservation"),makeReservation}}>
+                Reservetion
+            </button>
+        }
+
+        </main>
+    )
+	}

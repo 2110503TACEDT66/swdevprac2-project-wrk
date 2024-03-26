@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import getCowork from '@/libs/getCowork';
+import Link from 'next/link';
 
 export default async function CoworkDetailPage({
 	params,
@@ -30,6 +31,13 @@ export default async function CoworkDetailPage({
 						Close time:{CoworkDetail.data.Close_time}
 					</div>
 					<div className="text-md mx-5">Tel: {CoworkDetail.data.tel}</div>
+
+					<Link href={`/reservations?id=${params.cid}&name=${CoworkDetail.data.name}`}>
+                    <button className="block rounded-md bg-orange-400 hover:bg-orange-600 px-3 py-1
+                    text-white shadow-sm">
+                        Make a Reservation
+                    </button>
+                </Link>
 				</div>
 			</div>
 		</main>
