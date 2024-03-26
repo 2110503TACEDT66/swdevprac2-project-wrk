@@ -2,6 +2,7 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
 import styles from './RegisterPage.module.css'; // Import CSS module for styling
 import router from 'next/router';
+import Link from 'next/link';
 
 export default function RegisterPage() {
 	const [formData, setFormData] = useState({
@@ -79,16 +80,11 @@ export default function RegisterPage() {
 						required
 					/>
 				</div>
-				<button
-					type="submit"
-					className={styles.submitButton}
-					onClick={(e) => {
-						e.stopPropagation();
-						router.push('/api/auth/signin');
-					}}
-				>
-					Register
-				</button>{' '}
+				<Link href="/">
+					<button type="submit" className={styles.submitButton}>
+						Register
+					</button>
+				</Link>
 				{/* Apply submitButton class for styling */}
 			</form>
 		</div>
