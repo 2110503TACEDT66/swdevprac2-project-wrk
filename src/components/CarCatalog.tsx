@@ -42,7 +42,7 @@ export default async function CarCatalog({carJson}: {carJson: CarJson}) {
 
 	return (
 		<>
-			Explore {count} co-working spaces in our catalog
+			Explore {count} co-working space in our catalog
 			<div
 				style={{
 					margin: '20px',
