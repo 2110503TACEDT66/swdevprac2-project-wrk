@@ -6,7 +6,7 @@ import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 
 export default async function AllCoWork() {
-	const Coworks = getCoworks();
+	const Coworks = await getCoworks();
 
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
