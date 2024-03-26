@@ -10,9 +10,9 @@ export default function CoWork() {
 
 	return (
 		<button
-			className="bg-white text-cyan-600 border border-cyan-600
+			className="bg-white text-orange-500 border border-orange-500
                 font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-10 right-10
-                hover:bg-cyan-600 hover:text-white hover:border-transparent"
+                hover:bg-orange-500 hover:text-white hover:border-transparent"
 			onClick={(e) => {
 				e.stopPropagation();
 				router.push('/newcowork');

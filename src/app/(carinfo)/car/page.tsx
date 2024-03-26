@@ -18,8 +18,8 @@ export default async function AllCoWork() {
 	if (proflie.data.role === 'admin') Role = 1;
 
 	return (
-		<main className="text-center p-5">
-			<h1 className="text-xl font-medium">Select Your Co-Working Space</h1>
+		<main className="text-center">
+			<div className="text-3xl font-medium text-orange-500 m-5">Choose your way of working</div>
 			<CoworkCatalog CoworkJson={Coworks} />
 			{Role ? <CoWork /> : null}
 		</main>

@@ -20,7 +20,7 @@ export default function ProductCard({
 					fill={true}
 					className="object-cover rounded-lg"
 				/>
-				<div className="absolute z-50 p-[10px] m-[10px] bg-gray-500 rounded rounded-xl text-xl text-white font-semibold">
+				<div className="absolute z-50 p-[10px] m-[10px] bg-orange-500 rounded rounded-xl text-xl text-white font-semibold">
 					{carName}
 				</div>
 			</div>
