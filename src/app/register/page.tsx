@@ -21,6 +21,7 @@ export default async function RegisterPage() {
 				tel: tel,
 				role: role,
 			});
+			console.log(user);
 		} catch (error) {
 			console.log(error);
 		}
