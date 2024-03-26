@@ -5,88 +5,96 @@ import router from 'next/router';
 import Link from 'next/link';
 
 export default function RegisterPage() {
-	const [formData, setFormData] = useState({
-		name: '',
-		email: '',
-		password: '',
-		tel: '',
-		role: 'user', // Default role
-	});
-
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const {name, value} = e.target;
-		setFormData((prevData) => ({
-			...prevData,
-			[name]: value,
-		}));
-	};
-
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		// Perform registration logic here, such as sending data to backend
-		console.log(formData); // For demonstration, you can replace this with your registration logic
-	};
-
 	return (
-		<div className={styles.container}>
-			{' '}
-			{/* Apply container class for centering */}
-			<form onSubmit={handleSubmit} className={styles.form}>
-				{' '}
-				{/* Apply form class for styling */}
-				<div className={styles.formGroup}>
-					{' '}
-					{/* Apply formGroup class for styling */}
-					<label htmlFor="name">Name:</label>
-					<input
-						type="text"
-						id="name"
-						name="name"
-						value={formData.name}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<div className={styles.formGroup}>
-					<label htmlFor="email">Email:</label>
-					<input
-						type="email"
-						id="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<div className={styles.formGroup}>
-					<label htmlFor="password">Password:</label>
-					<input
-						type="password"
-						id="password"
-						name="password"
-						value={formData.password}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<div className={styles.formGroup}>
-					<label htmlFor="tel">Tel:</label>
-					<input
-						type="tel"
-						id="tel"
-						name="tel"
-						value={formData.tel}
-						onChange={handleChange}
-						required
-					/>
-				</div>
-				<Link href="/">
-					<button type="submit" className={styles.submitButton}>
-						Register
-					</button>
-				</Link>
-				{/* Apply submitButton class for styling */}
-			</form>
-		</div>
+		<form className="my-[10%] mx-[25%] w-[100%] h-[80%]">
+			<div className="text-xl text-blue-700">Register</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="name">
+					Name
+				</label>
+				<input
+					type="text"
+					required
+					id="name"
+					name="name"
+					placeholder="username"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="email">
+					Email
+				</label>
+				<input
+					type="text"
+					required
+					id="email"
+					name="email"
+					placeholder="email"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="password">
+					Password
+				</label>
+				<input
+					type="password"
+					required
+					id="password"
+					name="password"
+					placeholder="password"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label
+					className="w-auto block text-gray-700 pr-4"
+					htmlFor="verify-password"
+				>
+					Verify-Password
+				</label>
+				<input
+					type="password"
+					required
+					id="verify-password"
+					name="verify-password"
+					placeholder="verify-password"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="tel">
+					Tel
+				</label>
+				<input
+					type="text"
+					required
+					id="tel"
+					name="tel"
+					placeholder="tel"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="role">
+					Role
+				</label>
+				<input
+					type="text"
+					id="role"
+					name="role"
+					placeholder=""
+					value="user"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<button
+				type="submit"
+				className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded"
+			>
+				Register
+			</button>
+		</form>
 	);
 }
