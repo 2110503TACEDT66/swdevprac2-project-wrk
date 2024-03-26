@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import carSlice from "./feature/carSlice";
+import cartSlice from "./feature/carSlice";
 import { useSelector, TypedUseSelectorHook } from "react-redux";
 
 
@@ -13,7 +13,7 @@ import { useSelector, TypedUseSelectorHook } from "react-redux";
 
 export const store = configureStore({
     reducer:{
-        carSlice
+        cartSlice
     }
 })
 

@@ -4,7 +4,7 @@ import { AppDispatch, useAppSelector } from "@/redux/store"
 
 export default function ReservationCart(){
 
-    const carItems = useAppSelector((state)=> state.carSlice.carItems)
+    const carItems = useAppSelector((state)=> state.cartSlice.carItems)
     // const dispatch = useDispatch<AppDispatch>()
     
     return(
