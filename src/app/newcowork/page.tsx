@@ -7,137 +7,142 @@ import Link from 'next/link';
 export default function RegisterPage() {
 	return (
 		<form className="my-[10%] mx-[25%] w-[80%] h-[60%]">
-			<div className="text-xl text-blue-700">Add New Co-Working Space</div>
+			<div className="text-xl text-orange-500 font-medium m-5">New Co-Working Space</div>
 			<div className="flex items-center w-1/2 my-2 ">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="model">
-					{' '}
-					Model
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Name">
+					Name
 				</label>
 				<input
 					type="text"
 					required
-					id="model"
-					name="model"
-					placeholder="Car Model"
+					id="Name"
+					name="Name"
+					placeholder="enter name"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
-			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="desc">
-					Description
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Address">
+					Address
 				</label>
 				<input
 					type="text"
 					required
-					id="desc"
-					name="desc"
-					placeholder="Car Description"
+					id="Address"
+					name="Address"
+					placeholder="Address"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
-			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="picture">
-					{' '}
-					Picture
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="District">
+					District
 				</label>
 				<input
 					type="text"
 					required
-					id="picture"
-					name="picture"
-					placeholder="URL"
+					id="District"
+					name="District"
+					placeholder="District"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
-			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="seats">
-					{' '}
-					Seats
-				</label>
-				<input
-					type="number"
-					required
-					id="seats"
-					name="seats"
-					placeholder="4"
-					min={0}
-					max={50}
-					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
-				/>
-				<label className="w-auto block text-gray-700 pr-4 m1-5" htmlFor="doors">
-					{' '}
-					Doors
-				</label>
-				<input
-					type="number"
-					required
-					id="doors"
-					name="doors"
-					placeholder="4"
-					min={0}
-					max={8}
-					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
-				/>
-				<input
-					className="ml-5 mr-2"
-					id="automatic"
-					name="automatic"
-					type="checkbox"
-				/>{' '}
-				<span>Auto</span>
-			</div>
-			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="largebags">
-					{' '}
-					Large Bags
-				</label>
-				<input
-					type="number"
-					required
-					id="largebags"
-					name="largebags"
-					placeholder="2"
-					min={0}
-					max={10}
-					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
-				/>
-				<label
-					className="w-auto block text-gray-700 pr-4 ml-5"
-					htmlFor="smallbags"
-				>
-					{' '}
-					Small Bags
-				</label>
-				<input
-					type="number"
-					required
-					id="smallbags"
-					name="smallbags"
-					placeholder="2"
-					min={0}
-					max={10}
-					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
-				/>
-			</div>
-			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="dayRate">
-					{' '}
-					Rate
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Province">
+				Province
 				</label>
 				<input
 					type="text"
 					required
-					id="dayRate"
-					name="dayRate"
-					placeholder="Daily Rate (including insurance)"
+					id="Province"
+					name="Province"
+					placeholder="Province"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Postalcode">
+				Postalcode
+				</label>
+				<input
+					type="text"
+					required
+					id="Postalcode"
+					name="Postalcode"
+					placeholder="Postalcode"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Region">
+				Postalcode
+				</label>
+				<input
+					type="text"
+					required
+					id="Region"
+					name="Region"
+					placeholder="Region"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Tel">
+				Tel
+				</label>
+				<input
+					type="text"
+					required
+					id="Tel"
+					name="Tel"
+					placeholder="phone number"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Open time">
+				Open time
+				</label>
+				<input
+					type="text"
+					required
+					id="Open-time"
+					name="Open-time"
+					placeholder="open time"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Close time">
+				Close time
+				</label>
+				<input
+					type="text"
+					required
+					id="Close-time"
+					name="Close-time"
+					placeholder="close time"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2 ">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Picture">
+				Picture
+				</label>
+				<input
+					type="text"
+					required
+					id="Picture"
+					name="Picture"
+					placeholder="Picture URL"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
 			<button
 				type="submit"
-				className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded"
+				className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded m-5"
 			>
-				Add New Car
+				Add New CoWorking Space 
 			</button>
 		</form>
 	);
