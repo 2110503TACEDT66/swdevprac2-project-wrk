@@ -124,7 +124,7 @@ export default function RegisterPage() {
 						type="time"
 						id="opentime"
 						name="opentime"
-						value={formData.tel}
+						value={formData.opentime}
 						onChange={handleChange}
 						required
 					/>
@@ -151,7 +151,7 @@ export default function RegisterPage() {
 						required
 					/>
 				</div>
-				<Link href="/">
+				<Link href="/car">
 					<button type="submit" className={styles.submitButton}>
 						Add New CoWork
 					</button>
