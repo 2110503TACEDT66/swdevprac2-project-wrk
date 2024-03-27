@@ -37,7 +37,7 @@ export default async function TopMenu() {
 					sizes="100vh"
 				/>
 			</Link>
-			<TopMenuItem title="Reservation" pageRef="/cart" />
+			<TopMenuItem title="Reservation" pageRef="/reservations" />
 			{proflie.data.role === 'admin' ? (
 				<TopMenuItem title="Admin" pageRef="/reservations/manage" />
 			) : null}
