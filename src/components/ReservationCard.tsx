@@ -1,15 +1,12 @@
 import styles from './productcard.module.css';
 import Image from 'next/image';
 import InteractiveCard from './InteractiveCard';
+import { reservationItem } from './ReservationCatalog';
 
 export default function ReservationCard({
-	coworkName,
-	imgSrc,
-	onCompare,
+    data
 }: {
-	coworkName: string;
-	imgSrc: string;
-	onCompare?: Function;
+	data : reservationItem
 }) {
 	return (
 		<InteractiveCard contentName={coworkName}>
