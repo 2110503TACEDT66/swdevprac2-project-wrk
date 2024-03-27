@@ -1,31 +1,27 @@
-import getCowork from "@/libs/getCowork";
+import getCowork from '@/libs/getCowork';
 import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 import {redirect} from 'next/navigation';
-import updateCoWork from "@/libs/updateCoWork";
+import updateCoWork from '@/libs/updateCoWork';
 
 export default async function update({params}: {params: {cid: string}}) {
-
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
-	
-
+	const CoworkDetail = await getCowork(params.cid);
 	const updatecowork = async (updatecowork: FormData) => {
 		'use server';
 		const Open_time = updatecowork.get('Open-time');
 		const Close_time = updatecowork.get('Close-time');
 
 		const item: any = {
-			id:params.cid,
+			id: params.cid,
 			Open_time: Open_time,
-			Close_time: Close_time
-		}
+			Close_time: Close_time,
+		};
 
 		try {
-
-			const user = await updateCoWork(session.user.token,item);
-
+			const user = await updateCoWork(session.user.token, item);
 		} catch (error) {
 			console.log(error);
 		}
@@ -46,7 +42,7 @@ export default async function update({params}: {params: {cid: string}}) {
 					required
 					id="Open-time"
 					name="Open-time"
-					placeholder="open time"
+					placeholder={CoworkDetail.data.Open_time}
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
@@ -59,7 +55,7 @@ export default async function update({params}: {params: {cid: string}}) {
 					required
 					id="Close-time"
 					name="Close-time"
-					placeholder="close time"
+					placeholder={CoworkDetail.data.Close_time}
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
