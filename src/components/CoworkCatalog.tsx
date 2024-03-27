@@ -4,13 +4,6 @@ export interface coworkObj {
 	pagination: Record<string, any>; // Since the structure is unknown
 	data: coworkItem[];
 }
-
-interface coworkItem {
-	success: boolean;
-	count: number;
-	pagination: Record<string, any>; // Since the structure is unknown
-	data: reservationItem[];
-}
 interface reservationItem {
 	_id: string;
 	user: string;

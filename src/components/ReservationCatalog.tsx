@@ -1,14 +1,6 @@
-export interface coworkObj {
+export interface reservationObj {
 	success: boolean;
 	count: number;
-	pagination: Record<string, any>; // Since the structure is unknown
-	data: coworkItem[];
-}
-
-interface coworkItem {
-	success: boolean;
-	count: number;
-	pagination: Record<string, any>; // Since the structure is unknown
 	data: reservationItem[];
 }
 interface reservationItem {
@@ -23,7 +15,7 @@ interface reservationItem {
 	__v: number;
 }
 
-interface coworkItem {
+interface reservationItem {
 	_id: string;
 	name: string;
 	address: string;
@@ -47,11 +39,11 @@ import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 
 export default async function CarCatalog({
-	CoworkJson,
+	ReservationJson
 }: {
-	CoworkJson: coworkObj;
+	ReservationJson: reservationObj;
 }) {
-	const carJsonRedy = await CoworkJson;
+	const carJsonRedy = await ReservationJson;
 
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
@@ -60,7 +52,7 @@ export default async function CarCatalog({
 
 	return (
 		<>
-			Explore {carJsonRedy.count} coWorks in our catalog
+			Explore {carJsonRedy.count} Reservation in your catalog
 			<div
 				style={{
 					margin: '20px',
@@ -71,11 +63,11 @@ export default async function CarCatalog({
 					alignContent: 'space-around',
 				}}
 			>
-				{carJsonRedy.data.map((coworkItem: coworkItem) => (
-					<Link href={`/cowork/${coworkItem.id}`} className="w-1/5">
+				{carJsonRedy.data.map((reservationItem: reservationItem) => (
+					<Link href={`/reservation/${reservationItem.id}`} className="w-[100%] sm:w-[50%] md:w-[30%] 1g:w-[25%] p-2 sm:p-4 md:p-4 1g:p-8">
 						<ProductCard
-							coworkName={coworkItem.name}
-							imgSrc={coworkItem.picture}
+							coworkName={reservationItem.name}
+							imgSrc={reservationItem.picture}
 						/>
 					</Link>
 				))}

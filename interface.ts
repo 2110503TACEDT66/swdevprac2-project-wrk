@@ -1,7 +1,9 @@
 export interface ReservationItem{
-    _id : string        
-    name : string       
-    start_time:string
-    end_time:string
-    date:string
+    _id : string,
+    user: string,        
+    coWork : string,
+    date: string,       
+    startTime:string,
+    endTime:string,
+    table:string,
 }
