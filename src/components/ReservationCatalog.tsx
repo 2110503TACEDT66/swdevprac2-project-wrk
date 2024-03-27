@@ -16,22 +16,22 @@ interface reservationItem {
 	__v: number;
 }
 
-interface reservationItem {
-	_id: string;
-	name: string;
-	address: string;
-	district: string;
-	province: string;
-	postalcode: string;
-	region: string;
-	tel: string;
-	Open_time: string;
-	Close_time: string;
-	picture: string;
-	__v: number;
-	reservations: reservationItem[];
-	id: string;
-}
+// interface reservationItem {
+// 	_id: string;
+// 	name: string;
+// 	address: string;
+// 	district: string;
+// 	province: string;
+// 	postalcode: string;
+// 	region: string;
+// 	tel: string;
+// 	Open_time: string;
+// 	Close_time: string;
+// 	picture: string;
+// 	__v: number;
+// 	reservations: reservationItem[];
+// 	id: string;
+// }
 
 import {getServerSession} from 'next-auth';
 import ProductCard from './ProductCard';
