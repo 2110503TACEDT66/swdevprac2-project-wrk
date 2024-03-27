@@ -1,7 +1,6 @@
 import getCowork from '@/libs/getCowork';
 import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
-import getUserProfile from '@/libs/getUserProfile';
 import {redirect} from 'next/navigation';
 import updateCoWork from '@/libs/updateCoWork';
 
