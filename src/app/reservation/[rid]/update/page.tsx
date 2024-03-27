@@ -1,59 +1,59 @@
-import getCowork from '@/libs/getCowork';
+import getReservation from '@/libs/getReservation';
 import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import {redirect} from 'next/navigation';
-import updateCoWork from '@/libs/updateCoWork';
+import updateReservation from '@/libs/updateReservation';
 
-export default async function update({params}: {params: {cid: string}}) {
+export default async function updatereservation({params}: {params: {rid: string}}) {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
-	const CoworkDetail = await getCowork(params.cid);
-	const updatecowork = async (updatecowork: FormData) => {
+	const CoworkDetail = await getReservation(session.user.token,params.rid);
+	const UpdateReservation = async (UpdateReservation: FormData) => {
 		'use server';
-		const Open_time = updatecowork.get('Open-time');
-		const Close_time = updatecowork.get('Close-time');
+		const startTime = UpdateReservation.get('startTime');
+		const endTime = UpdateReservation.get('endTime');
 
 		const item: any = {
-			id: params.cid,
-			Open_time: Open_time,
-			Close_time: Close_time,
+			id: params.rid,
+			startTime: startTime,
+			endTime: endTime,
 		};
 
 		try {
-			const user = await updateCoWork(session.user.token, item);
+			const user = await updateReservation(session.user.token,params.rid)
 		} catch (error) {
 			console.log(error);
 		}
-		redirect(`/cowork/${params.cid}`);
+		redirect(`/reservation/${params.rid}`);
 	};
 
 	return (
-		<form action={updatecowork} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
+		<form action={UpdateReservation} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-orange-500 font-medium m-5">
-				Editing {CoworkDetail.data.name} Information
+				Change Your Reservation Time
 			</div>
 			<div className="flex items-center w-1/2 my-2 ">
-				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Open time">
-					Open time
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="startTime">
+					startTime
 				</label>
 				<input
 					type="text"
 					required
-					id="Open-time"
-					name="Open-time"
+					id="startTime"
+					name="startTime"
 					placeholder={CoworkDetail.data.Open_time}
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
 			<div className="flex items-center w-1/2 my-2 ">
-				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Close time">
-					Close time
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="endTime">
+                    endTime
 				</label>
 				<input
 					type="text"
 					required
-					id="Close-time"
-					name="Close-time"
+					id="endTime"
+					name="endTime"
 					placeholder={CoworkDetail.data.Close_time}
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
@@ -62,7 +62,7 @@ export default async function update({params}: {params: {cid: string}}) {
 				type="submit"
 				className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded m-5"
 			>
-				Add New CoWorking Space
+				Add New Reservation
 			</button>
 		</form>
 	);
