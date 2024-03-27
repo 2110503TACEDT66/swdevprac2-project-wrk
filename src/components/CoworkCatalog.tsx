@@ -63,9 +63,12 @@ export default async function CarCatalog({
 					alignContent: 'space-around',
 				}}
 			>
-				{carJsonRedy.data.map((carItem: coworkItem) => (
-					<Link href={`/car/${carItem.id}`} className="w-1/5">
-						<ProductCard carName={carItem.name} imgSrc={carItem.picture} />
+				{carJsonRedy.data.map((coworkItem: coworkItem) => (
+					<Link href={`/cowork/${coworkItem.id}`} className="w-1/5">
+						<ProductCard
+							coworkName={coworkItem.name}
+							imgSrc={coworkItem.picture}
+						/>
 					</Link>
 				))}
 			</div>

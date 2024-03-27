@@ -3,16 +3,16 @@ import Image from 'next/image';
 import InteractiveCard from './InteractiveCard';
 
 export default function ProductCard({
-	carName,
+	coworkName,
 	imgSrc,
 	onCompare,
 }: {
-	carName: string;
+	coworkName: string;
 	imgSrc: string;
 	onCompare?: Function;
 }) {
 	return (
-		<InteractiveCard contentName={carName}>
+		<InteractiveCard contentName={coworkName}>
 			<div className="w-full h-full relative rounded-lg">
 				<Image
 					src={imgSrc}
@@ -21,7 +21,7 @@ export default function ProductCard({
 					className="object-cover rounded-lg"
 				/>
 				<div className="absolute z-50 p-[10px] m-[10px] bg-orange-500 rounded rounded-xl text-xl text-white font-semibold">
-					{carName}
+					{coworkName}
 				</div>
 			</div>
 		</InteractiveCard>

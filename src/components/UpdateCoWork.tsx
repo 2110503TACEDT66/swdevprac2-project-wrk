@@ -2,8 +2,14 @@
 
 import {useRouter} from 'next/navigation';
 
-export default function UpdateCoWork({CoworkDetail,params} : {CoworkDetail:any,params: {cid: string}}) {
-    const router = useRouter();
+export default function UpdateCoWork({
+	CoworkDetail,
+	params,
+}: {
+	CoworkDetail: any;
+	params: {cid: string};
+}) {
+	const router = useRouter();
 
 	return (
 		<button
@@ -12,7 +18,7 @@ export default function UpdateCoWork({CoworkDetail,params} : {CoworkDetail:any,p
                 hover:bg-orange-500 hover:text-white hover:border-transparent"
 			onClick={(e) => {
 				e.stopPropagation();
-				router.push(`/car/${params.cid}/update`);
+				router.push(`/cowork/${params.cid}/update`);
 			}}
 		>
 			Edit

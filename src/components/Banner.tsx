@@ -52,7 +52,7 @@ export default function Banner() {
 							className="bg-white m-[3%] px-[2%] text-orange-600 border border-[2px] border-gray-600 font-semibold p-2 m-2 rounded z-30 content-center hover:bg-gray-600 hover:text-white hover:border-transparent"
 							onClick={(e) => {
 								e.stopPropagation();
-								router.push('/car');
+								router.push('/cowork');
 							}}
 						>
 							Reserve Your Space NOW
