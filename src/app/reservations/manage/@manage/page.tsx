@@ -3,84 +3,140 @@ export default function ManagePage() {
 		<form className=" mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-blue-700">Add New Reservation</div>
 			<div className="flex items-center w-1/2 my-2 ">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="model">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="name">
 					{' '}
-					Model
+					Name
 				</label>
 				<input
 					type="text"
 					required
-					id="model"
-					name="model"
-					placeholder="Car Model"
+					id="name"
+					name="name"
+					placeholder="co-working space name"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
 			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="desc">
-					Description
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="address">
+					Address
 				</label>
 				<input
 					type="text"
 					required
-					id="desc"
-					name="desc"
-					placeholder="Car Description"
+					id="address"
+					name="address"
+					placeholder="address"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
 			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="picture">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="district">
 					{' '}
-					Picture
+					District
 				</label>
 				<input
 					type="text"
 					required
-					id="picture"
-					name="picture"
-					placeholder="URL"
+					id="district"
+					name="district"
+					placeholder="district"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="province">
+					{' '}
+					Province
+				</label>
+				<input
+					type="text"
+					required
+					id="province"
+					name="province"
+					placeholder="province"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="postalcode">
+					{' '}
+					Postalcode
+				</label>
+				<input
+					type="text"
+					required
+					id="postalcode"
+					name="postalcode"
+					placeholder="postalcode"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="tel">
+					{' '}
+					Tel
+				</label>
+				<input
+					type="text"
+					required
+					id="tel"
+					name="tel"
+					placeholder="phone-number"
+					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
+				/>
+			</div>
+			<div className="flex items-center w-1/2 my-2">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="region">
+					{' '}
+					Region
+				</label>
+				<input
+					type="text"
+					required
+					id="region"
+					name="region"
+					placeholder="region"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
 			<div className="flex items-center w-1/2 my-2">
 				<label className="w-auto block text-gray-700 pr-4" htmlFor="seats">
 					{' '}
-					Seats
+					Open Time
 				</label>
 				<input
-					type="number"
+					type="text"
 					required
-					id="seats"
-					name="seats"
-					placeholder="4"
+					id="open_time"
+					name="open_time"
+					placeholder="XX:XX"
 					min={0}
 					max={50}
 					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 				<label className="w-auto block text-gray-700 pr-4 m1-5" htmlFor="doors">
 					{' '}
-					Doors
+					Close Time
 				</label>
 				<input
-					type="number"
+					type="text"
 					required
-					id="doors"
-					name="doors"
-					placeholder="4"
+					id="close_time"
+					name="close_time"
+					placeholder="XX:XX"
 					min={0}
 					max={8}
 					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
-				<input
+				{/* <input
 					className="ml-5 mr-2"
 					id="automatic"
 					name="automatic"
 					type="checkbox"
 				/>{' '}
-				<span>Auto</span>
+				<span>Auto</span> */}
 			</div>
-			<div className="flex items-center w-1/2 my-2">
+			{/* <div className="flex items-center w-1/2 my-2">
 				<label className="w-auto block text-gray-700 pr-4" htmlFor="largebags">
 					{' '}
 					Large Bags
@@ -112,18 +168,18 @@ export default function ManagePage() {
 					max={10}
 					className="bg-white border-2 border-gray-200 rounded w-auto p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
-			</div>
+			</div> */}
 			<div className="flex items-center w-1/2 my-2">
-				<label className="w-auto block text-gray-700 pr-4" htmlFor="dayRate">
+				<label className="w-auto block text-gray-700 pr-4" htmlFor="picture">
 					{' '}
-					Rate
+					Picture
 				</label>
 				<input
 					type="text"
 					required
-					id="dayRate"
-					name="dayRate"
-					placeholder="Daily Rate (including insurance)"
+					id="picture"
+					name="picture"
+					placeholder="URL"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
@@ -131,7 +187,7 @@ export default function ManagePage() {
 				type="submit"
 				className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded"
 			>
-				Add New Car
+				Add New Co-Working Space
 			</button>
 		</form>
 	);
