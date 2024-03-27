@@ -5,6 +5,7 @@ import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 import UpdateCoWork from '@/components/UpdateCoWork';
+import DeleteCoWork from '@/components/DeleteCoWork';
 
 export default async function CoworkDetailPage({
 	params,
@@ -57,7 +58,10 @@ export default async function CoworkDetailPage({
 						</button>
 					</Link>
 					{proflie.data.role === 'admin' ? (
-						<UpdateCoWork CoworkDetail={CoworkDetail} params={params} />
+						<div className="block">
+							<UpdateCoWork CoworkDetail={CoworkDetail} params={params} />
+							<DeleteCoWork params={params} />
+						</div>
 					) : null}
 				</div>
 			</div>

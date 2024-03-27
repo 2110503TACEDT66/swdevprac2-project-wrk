@@ -1,5 +1,5 @@
 export default async function deleteCowork(token: string, cid: string) {
-	const response = await fetch(`http://localhost:5050/api/v1/coworks/${cid}`, {
+	const response = await fetch(`http://localhost:5050/api/v1/coWork/${cid}`, {
 		method: 'DELETE',
 		headers: {
 			authorization: `Bearer ${token}`,

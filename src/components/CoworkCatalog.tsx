@@ -40,8 +40,11 @@ interface coworkItem {
 	id: string;
 }
 
+import {getServerSession} from 'next-auth';
 import ProductCard from './ProductCard';
 import Link from 'next/link';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
+import getUserProfile from '@/libs/getUserProfile';
 
 export default async function CarCatalog({
 	CoworkJson,
@@ -49,6 +52,11 @@ export default async function CarCatalog({
 	CoworkJson: coworkObj;
 }) {
 	const carJsonRedy = await CoworkJson;
+
+	const session = await getServerSession(authOptions);
+	if (!session || !session.user.token) return null;
+
+	const proflie = await getUserProfile(session.user.token);
 
 	return (
 		<>

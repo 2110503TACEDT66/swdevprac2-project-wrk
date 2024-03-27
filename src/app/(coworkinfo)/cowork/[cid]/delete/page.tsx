@@ -3,16 +3,12 @@ import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import deleteCowork from '@/libs/deleteCowork';
 import Link from 'next/link';
 
-export default async function DeleteCoworkPage({
-	params,
-}: {
-	params: {cid: string};
-}) {
+export default async function DeleteCowork({params}: {params: {cid: string}}) {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return;
 
-	deleteCowork(session.user.token, params.cid);
-
+	const res = await deleteCowork(session.user.token, params.cid);
+	console.log(res);
 	return (
 		<main className="text-center">
 			<div className="bg-slate-200 rounded-lg mx-5 px-5 py-5 my-2">
