@@ -2,8 +2,18 @@
 
 import {useRouter} from 'next/navigation';
 
-export default function DeleteReservation({params}: {params: {rid: string}}) {
+export default function DeleteCoWork({params}: {params: {rid: string}}) {
 	const router = useRouter();
+
+	const handleDelete = () => {
+		// Display confirmation dialog
+		const isConfirmed = window.confirm('Are you sure you want to delete?');
+
+		// If confirmed, proceed with deletion
+		if (isConfirmed) {
+			router.push(`/reservation/${params.rid}/delete`);
+		}
+	};
 
 	return (
 		<button
@@ -12,7 +22,7 @@ export default function DeleteReservation({params}: {params: {rid: string}}) {
                 hover:bg-orange-500 hover:text-white hover:border-transparent"
 			onClick={(e) => {
 				e.stopPropagation();
-				router.push(`/reservation/${params.rid}/delete`);
+				handleDelete();
 			}}
 		>
 			Delete

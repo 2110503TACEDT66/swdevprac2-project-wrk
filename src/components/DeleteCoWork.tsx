@@ -5,6 +5,16 @@ import {useRouter} from 'next/navigation';
 export default function DeleteCoWork({params}: {params: {cid: string}}) {
 	const router = useRouter();
 
+	const handleDelete = () => {
+		// Display confirmation dialog
+		const isConfirmed = window.confirm('Are you sure you want to delete?');
+
+		// If confirmed, proceed with deletion
+		if (isConfirmed) {
+			router.push(`/cowork/${params.cid}/delete`);
+		}
+	};
+
 	return (
 		<button
 			className="bg-white text-orange-500 border border-orange-500
@@ -12,7 +22,7 @@ export default function DeleteCoWork({params}: {params: {cid: string}}) {
                 hover:bg-orange-500 hover:text-white hover:border-transparent"
 			onClick={(e) => {
 				e.stopPropagation();
-				router.push(`/cowork/${params.cid}/delete`);
+				handleDelete();
 			}}
 		>
 			Delete
