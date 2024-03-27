@@ -72,7 +72,7 @@ export default async function CarCatalog({
 				}}
 			>
 				{carJsonRedy.data.map((coworkItem: coworkItem) => (
-					<Link href={`/cowork/${coworkItem.id}`} className="w-1/5">
+					<Link href={`/cowork/${coworkItem.id}`} className="w-[100%] sm:w-[50%] md:w-[30%] 1g:w-[25%] p-2 sm:p-4 md:p-4 1g:p-8">
 						<ProductCard
 							coworkName={coworkItem.name}
 							imgSrc={coworkItem.picture}

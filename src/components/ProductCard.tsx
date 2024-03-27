@@ -18,7 +18,7 @@ export default function ProductCard({
 					src={imgSrc}
 					alt="Product Picture"
 					fill={true}
-					className="object-cover rounded-lg"
+					className="object-cover rounded-lg w-16 md:w-32 lg:w-48"
 				/>
 				<div className="absolute z-50 p-[10px] m-[10px] bg-orange-500 rounded rounded-xl text-xl text-white font-semibold">
 					{coworkName}
