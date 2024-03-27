@@ -31,7 +31,7 @@ export default async function update({params}: {params: {cid: string}}) {
 	return (
 		<form action={updatecowork} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-orange-500 font-medium m-5">
-				New Co-Working Space
+				Editing {CoworkDetail.data.name} Information
 			</div>
 			<div className="flex items-center w-1/2 my-2 ">
 				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="Open time">
