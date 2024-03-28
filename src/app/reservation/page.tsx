@@ -22,10 +22,7 @@ export default async function AllCoWork() {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 
-	const proflie = await getUserProfile(session.user.token);
-
 	const Reservations = await getReservations(session.user.token);
-	console.log(Reservations)
 
 	return (
 		<main className="text-center">
