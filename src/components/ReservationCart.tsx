@@ -28,17 +28,20 @@ export default async function ReservationCart({
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 
-	const profile = await getUserProfile(InterfaceReservation.user);
-
+	const proflie = await getUserProfile(session.user.token);
+	console.log(InterfaceReservation);
 	return (
 		<main className="bg-slate-100 m-5 p-5 w-full">
 			<div className="text-2x1">{InterfaceReservation.coWork.name}</div>
 			<table className="table-auto border-separate border-spacing-2">
 				<tbody>
-					<tr>
-						<td>User</td>
-						<td>{profile.name}</td>
-					</tr>
+					{proflie.data.role === 'admin' ? (
+						<tr>
+							<td>User Id</td>
+							<td>{InterfaceReservation.user}</td>
+						</tr>
+					) : null}
+
 					<tr>
 						<td>Start Time</td>
 						<td>{InterfaceReservation.startTime}</td>

@@ -3,19 +3,22 @@ import {revalidateTag} from 'next/cache';
 import {redirect} from 'next/navigation';
 import Reservation from '@/db/models/Reservation';
 import getUserProfile from '@/libs/getUserProfile';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import {getServerSession} from 'next-auth';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getCowork from '@/libs/getCowork';
 
-
-export default async function AddReservationPage({params}: {params: {cid: string}}) {
+export default async function AddReservationPage({
+	params,
+}: {
+	params: {cid: string};
+}) {
 	const addReservation = async (addReservationForm: FormData) => {
 		'use server';
 
-        const session = await getServerSession(authOptions);
-	    if (!session || !session.user.token) return null;
-		
-        const userId = getUserProfile(session.user._id)
+		const session = await getServerSession(authOptions);
+		if (!session || !session.user.token) return null;
+
+		const userId = getUserProfile(session.user._id);
 		const coworkObj = await getCowork(params.cid);
 		const date = addReservationForm.get('date');
 		const table = addReservationForm.get('table');
@@ -26,11 +29,11 @@ export default async function AddReservationPage({params}: {params: {cid: string
 			await dbConnect();
 			const reservation = await Reservation.create({
 				user: userId,
-                coWork: coworkObj,
-                date: date,
-                startTime:Start_time,
-                endTime:End_time,
-                table : table
+				coWork: coworkObj,
+				date: date,
+				startTime: Start_time,
+				endTime: End_time,
+				table: table,
 			});
 		} catch (error) {
 			console.log(error);
