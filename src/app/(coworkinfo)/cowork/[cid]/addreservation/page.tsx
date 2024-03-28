@@ -38,14 +38,14 @@ export default async function AddReservationPage({
 		} catch (error) {
 			console.log(error);
 		}
-		revalidateTag('reservation');
+		revalidateTag('reservations');
 		redirect('/reservation');
 	};
 
 	return (
 		<form action={addReservation} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-orange-500 font-medium m-5">
-				New Reservation Space
+				New Add Reservation
 			</div>
 			<div className="flex items-center w-1/2 my-2 ">
 				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="date">
@@ -56,7 +56,7 @@ export default async function AddReservationPage({
 					required
 					id="date"
 					name="date"
-					placeholder="date"
+					placeholder="yyyy/mm/dd"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
@@ -69,7 +69,7 @@ export default async function AddReservationPage({
 					required
 					id="table"
 					name="table"
-					placeholder="phone number"
+					placeholder="A00"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>

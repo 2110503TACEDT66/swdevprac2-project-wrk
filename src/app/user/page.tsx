@@ -11,32 +11,9 @@ import Link from "next/link";
 
 export default function Reservations(){
 
-    const urlParams = useSearchParams()
-    const cid = urlParams.get('id')
-    const name = urlParams.get('name')
-
-    const [reserveDate, setReserveDate] = useState<Dayjs|null>(null)
-    const [start_time,setStartTime] = useState<string>("start")
-    const [end_time,setEndTime] = useState<string>("end")
-
-    const dispatch = useDispatch<AppDispatch>()
-
-    const makeReservation = () => {
-        if(cid && name && start_time !== "start" && end_time !== "end"){
-            const item:ReservationItem = {
-                _id : cid,
-                name : name,       
-                start_time: start_time,
-                end_time: end_time,
-				date: dayjs(reserveDate).format("YYYY/MM/DD")
-            }
-            dispatch(addReservation(item))
-        }
-    }
-
     return (
         <main className="w-[100%] flex flex-col items-center space-y-4">
-            <div className="text-xl font-medium">New Reservation</div>
+            {/* <div className="text-xl font-medium">New Reservation</div>
             <div className="text-xl font-medium">{name}</div>
 
             <div className="w-fit space-y-3">
@@ -55,7 +32,7 @@ export default function Reservations(){
                 Reservation
             </button>
 			</Link>
-        }
+        } */}
 
         </main>
     )
