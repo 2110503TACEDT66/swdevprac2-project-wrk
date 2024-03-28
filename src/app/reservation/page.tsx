@@ -4,7 +4,6 @@ import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 import getReservations from '@/libs/getReservations';
 import ReservationCatalog from '@/components/ReservationCatalog';
-import ReservationCard from '@/components/ReservationCard';
 
 interface reservationItem {
 	_id: string;
@@ -23,10 +22,7 @@ export default async function AllCoWork() {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 
-	const proflie = await getUserProfile(session.user.token);
-
 	const Reservations = await getReservations(session.user.token);
-	console.log(Reservations)
 
 	return (
 		<main className="text-center">

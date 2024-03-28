@@ -42,8 +42,6 @@ export default async function ReservationCatalog({
 					display: 'flex',
 					flexDirection: 'row',
 					flexWrap: 'wrap',
-					justifyContent: 'space-around',
-					alignContent: 'space-around',
 				}}
 			>
 				{carJsonRedy.data.map((reservationItem: reservationItem) => (

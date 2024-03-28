@@ -1,7 +1,7 @@
 interface reservationItem {
 	_id: string;
 	user: string;
-	coWork: string;
+	coWork: Object;
 	date: string;
 	startTime: string;
 	endTime: string;
@@ -9,10 +9,27 @@ interface reservationItem {
 	createdAt: string;
 	__v: number;
 }
+// interface InterfaceReservation.coWork {
+// 	_id: string;
+// 	name: string;
+// 	address: string;
+// 	district: string;
+// 	province: string;
+// 	postalcode: string;
+// 	region: string;
+// 	tel: string;
+// 	Open_time: string;
+// 	Close_time: string;
+// 	picture: string;
+// 	__v: number;
+// 	reservations: reservationItem[];
+// 	id: string;
+// }
 
 import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
+import getCowork from '@/libs/getCowork';
 
 export default async function ReservationCart({InterfaceReservation} :{InterfaceReservation :reservationItem}) {
 
@@ -21,9 +38,13 @@ export default async function ReservationCart({InterfaceReservation} :{Interface
 
 	const profile = await getUserProfile(session.user.token);
 	var createdAt = new Date(InterfaceReservation.createdAt);
-	console.log(profile)
+
+	// const CoworkDetail = await getCowork(InterfaceReservation.coWork);
+	
+	console.log( "Hi it me "+InterfaceReservation.coWork + "kkkkkkkkkkkkkkkkkkkkkk")
+
 	return (
-		<main className="bg-slate-100 m-5 p-5">
+		<main className="bg-slate-100 m-5 p-5 w-[80%]">
 			<div className="text-2x1">{InterfaceReservation.coWork.name}</div>
 			<table className="table-auto border-separate border-spacing-2"><tbody>
 				<tr><td>User</td><td>{profile.data.name}</td></tr>
