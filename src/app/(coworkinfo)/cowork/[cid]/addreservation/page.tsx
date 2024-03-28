@@ -19,15 +19,24 @@ export default async function AddReservationPage({
 		const session = await getServerSession(authOptions);
 		if (!session || !session.user.token) return null;
 
-		const userId = await getUserProfile(session.user._id);
+		const user = await getUserProfile(session.user.token);
 		const coworkObj = await getCowork(params.cid);
-		const date = addReservationForm.get('date');
-		const table = addReservationForm.get('table');
-		const startTime = addReservationForm.get('Start-time');
-		const endTime = addReservationForm.get('End-time');
-
+		const dateRe = addReservationForm.get('dateRe')!.toString();
+		const table = addReservationForm.get('table')!.toString();
+		const startTime = addReservationForm.get('Start-time')!.toString();
+		const endTime = addReservationForm.get('End-time')!.toString();
+		if (!dateRe) return null;
 		try {
-			await addReservation(session.user.token,params.cid,userId,date,startTime,endTime,table){
+			await addReservation(
+				session.user.token,
+				params.cid,
+				user.data.id,
+				dateRe,
+				startTime,
+				endTime,
+				table
+			);
+			console.log('Success ass reservation');
 		} catch (error) {
 			console.log(error);
 		}
@@ -36,19 +45,22 @@ export default async function AddReservationPage({
 	};
 
 	return (
-		<form action={addReservationFunc} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
+		<form
+			action={addReservationFunc}
+			className="my-[10%] mx-[25%] w-[80%] h-[60%]"
+		>
 			<div className="text-xl text-orange-500 font-medium m-5">
 				New Add Reservation
 			</div>
 			<div className="flex items-center w-1/2 my-2 ">
-				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="date">
+				<label className="w-1/5 block text-gray-700 pr-4" htmlFor="dateRe">
 					date
 				</label>
 				<input
 					type="text"
 					required
-					id="date"
-					name="date"
+					id="dateRe"
+					name="dateRe"
 					placeholder="yyyy/mm/dd"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
