@@ -16,13 +16,12 @@ interface reservationItem {
 	__v: number;
 }
 import {getServerSession} from 'next-auth';
-import ProductCard from './ProductCard';
 import Link from 'next/link';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 import ReservationCart from './ReservationCart';
 
-export default async function CarCatalog({
+export default async function ReservationCatalog({
 	ReservationJson
 }: {
 	ReservationJson: reservationObj;
@@ -48,10 +47,9 @@ export default async function CarCatalog({
 				}}
 			>
 				{carJsonRedy.data.map((reservationItem: reservationItem) => (
-					<Link href={`/reservation/${reservationItem.id}`} className="w-[100%] sm:w-[50%] md:w-[30%] 1g:w-[25%] p-2 sm:p-4 md:p-4 1g:p-8">
+					<Link href={`/reservation/${reservationItem._id}`} className="w-[100%] sm:w-[50%] md:w-[30%] 1g:w-[25%] p-2 sm:p-4 md:p-4 1g:p-8">
 						<ReservationCart
-							coworkName={reservationItem.name} //ไม่มี.name
-							imgSrc={reservationItem.picture} //ไม่ใช้.picture
+							InterfaceReservation ={reservationItem}
 						/>
 					</Link>
 				))}

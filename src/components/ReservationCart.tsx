@@ -1,17 +1,43 @@
-import Image from 'next/image';
-import InteractiveCard from './InteractiveCard';
+interface reservationItem {
+	_id: string;
+	user: string;
+	coWork: string;
+	date: string;
+	startTime: string;
+	endTime: string;
+	table: string;
+	createdAt: string;
+	__v: number;
+}
 
-export default function ReservationCart({
-	coworkName,
-	imgSrc,
-	onCompare,
-}: {
-	coworkName: string;
-	imgSrc: string;
-	onCompare?: Function;
-}) {
+import {getServerSession} from 'next-auth';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
+import getUserProfile from '@/libs/getUserProfile';
+
+export default async function ReservationCart({InterfaceReservation} :{InterfaceReservation :reservationItem}) {
+
+	const session = await getServerSession(authOptions);
+	if (!session || !session.user.token) return null;
+
+	const profile = await getUserProfile(session.user.token);
+	var createdAt = new Date(InterfaceReservation.createdAt);
+
 	return (
-		<InteractiveCard contentName={coworkName}>
+		<main className="bg-slate-100 m-5 p-5">
+			<div className="text-2x1">{profile.data.name}</div>
+			<table className="table-auto border-separate border-spacing-2"><tbody>
+				<tr><td>Email</td><td>{profile.data.email}</td></tr>
+				<tr><td>Tel.</td><td>{profile.data.tel}</td></tr>
+				<tr><td>CreatedAt</td><td>{createdAt.toString()}</td></tr>
+				</tbody></table>
+		</main>
+	);
+}
+
+
+
+
+{/* <InteractiveCard contentName={coworkName}>
 			<div className="w-full h-full relative rounded-lg">
 				<Image
 					src={imgSrc}
@@ -24,8 +50,18 @@ export default function ReservationCart({
 				</div>
 			</div>
 		</InteractiveCard>
-	);
-}
+
+
+
+
+
+
+
+
+
+
+
+
 'use client';
 import {useDispatch} from 'react-redux';
 import {AppDispatch, useAppSelector} from '@/redux/store';
@@ -60,4 +96,4 @@ export default function ReservationCart() {
 			))}
 		</div>
 	);
-}
+} */}
