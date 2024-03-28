@@ -10,21 +10,21 @@ export default async function DashboardPage() {
 	var createdAt = new Date(proflie.data.createdAt);
 
 	return (
-		<main className="bg-slate-100 m-5 p-5">
-			<div className="text-2xl">{proflie.data.name}</div>
-			<table className="table-auto border-separate border-spacing-2 ">
+		<main className="block bg-slate-100 mx-auto my-[5vh] p-5 align-middle  h-fit rounded rounded-xl item-center border border-5 border-orange-400">
+			<div className="text-2xl text-center ">{proflie.data.name}</div>
+			<table className="table-auto border-separate border-spacing-2 w-fit p-[3%] mx-auto ">
 				<tbody>
 					<tr>
-						<td>Email</td>
-						<td>{proflie.data.email}</td>
+						<td className="w-[8vw] p-1" >Email</td>
+						<td className="w-[30vw] p-1">{proflie.data.email}</td>
 					</tr>
 					<tr>
-						<td>Tel.</td>
-						<td>{proflie.data.tel}</td>
+						<td className="w-[8vw] p-1">Tel.</td>
+						<td className="w-[30vw] p-1">{proflie.data.tel}</td>
 					</tr>
 					<tr>
-						<td>Member Since</td>
-						<td>{createdAt.toString()}</td>
+						<td className="w-[8vw] p-1">Member Since</td>
+						<td className="w-[30vw] p-1">{createdAt.toString()}</td>
 					</tr>
 				</tbody>
 			</table>

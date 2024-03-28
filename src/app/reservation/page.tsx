@@ -4,12 +4,11 @@ import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 import getReservations from '@/libs/getReservations';
 import ReservationCatalog from '@/components/ReservationCatalog';
-import ReservationCard from '@/components/ReservationCard';
 
 interface reservationItem {
 	_id: string;
 	user: string;
-	coWork: string;
+	coWork: Object;
 	date: string;
 	startTime: string;
 	endTime: string;

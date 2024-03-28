@@ -22,14 +22,6 @@ export default async function ReservationDetailPage({
 		<main className="text-center p-5">
 			<h1 className="text-lg font-medium ">{ReservationDetail.data.name}</h1>
 			<div className="flex flex-row my-5 flex-wrap ml-[15%] w-[100%]">
-				<Image
-					src={ReservationDetail.data.picture}
-					alt="Reservation Image"
-					width={0}
-					height={0}
-					sizes="100vw"
-					className="rounded-lg w-[30%]"
-				/>
 				{/* 
 _id
 660260f60866cbce4a570811
@@ -69,26 +61,11 @@ __v
 					<div className="text-md m-5">
 						Table: {ReservationDetail.data.table}
 					</div>
-
-					<Link
-						href={`/reservations?id=${params.rid}&name=${ReservationDetail.data.user}`}
-					>
-						<button
-							className="block rounded-md bg-orange-400 hover:bg-orange-600 px-3 py-1
-                    text-white shadow-sm m-5"
-						>
-							Make a Reservation
-						</button>
-					</Link>
-					{proflie.data.role === 'admin' ? (
-						<div className="block">
-							<UpdateReservation
-								ReservationDetail={ReservationDetail}
-								params={params}
-							/>
+					<div className="block">
+							<UpdateReservation params={params} />
 							<DeleteReservation params={params} />
 						</div>
-					) : null}
+
 				</div>
 			</div>
 		</main>

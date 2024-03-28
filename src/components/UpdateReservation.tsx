@@ -3,10 +3,8 @@
 import {useRouter} from 'next/navigation';
 
 export default function UpdateReservation({
-	ReservationDetail,
 	params,
 }: {
-	ReservationDetail: any;
 	params: {rid: string};
 }) {
 	const router = useRouter();
