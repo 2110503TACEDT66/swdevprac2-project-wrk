@@ -19,7 +19,7 @@ export default async function DeleteReservation({
 				Your Reservation was successfully deleted.
 			</div>
 
-			<Link href={`/cart`}>
+			<Link href={`/reservation`}>
 				<button className="rounded-md bg-orange-400 mx-2 my-5 hover:bg-red-700 px-3 py-2 text-white shadow-sm">
 					Back to reservation catalog
 				</button>

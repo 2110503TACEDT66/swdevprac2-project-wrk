@@ -47,7 +47,7 @@ __v
 					</div>
 
 					<div className="text-md m-5">
-						Co-Working Space : {ReservationDetail.data.coWork}
+						Co-Working Space : {ReservationDetail.data.coWork.name}
 					</div>
 					<div className="text-md m-5">
 						Date : {ReservationDetail.data.date}
@@ -62,10 +62,9 @@ __v
 						Table: {ReservationDetail.data.table}
 					</div>
 					<div className="block">
-							<UpdateReservation params={params} />
-							<DeleteReservation params={params} />
-						</div>
-
+						<UpdateReservation params={params} />
+						<DeleteReservation params={params} />
+					</div>
 				</div>
 			</div>
 		</main>
