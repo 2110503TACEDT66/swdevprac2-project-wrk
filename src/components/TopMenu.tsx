@@ -37,10 +37,8 @@ export default async function TopMenu() {
 					sizes="100vh"
 				/>
 			</Link>
-			<TopMenuItem title="Reservation" pageRef="/reservation" />
-			{proflie.data.role === 'admin' ? (
-				<TopMenuItem title="Admin" pageRef="/admin/manage" />
-			) : null}
+			<TopMenuItem title="My Reservation" pageRef="/reservation" />
+			<TopMenuItem title="My Account" pageRef="/user/manage" />
 			{session ? (
 				<Link href="/api/auth/signout">
 					<div className="flex items-center absolute right-0  h-full px-2 text-cyan-600 text-sm">

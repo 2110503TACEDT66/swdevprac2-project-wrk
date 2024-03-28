@@ -3,7 +3,6 @@ export default function ManageReservationLayout({children,dashboard,manage} : {c
         <div className="flex flex-col w-full">
             {children}
             {dashboard}
-            {manage}
         </div>
     )
 }
