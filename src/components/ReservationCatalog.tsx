@@ -6,15 +6,7 @@ export interface reservationObj {
 
 interface reservationItem {
 	_id: string;
-	user: {
-		_id: string;
-		name: string;
-		tel: string;
-		email: string;
-		role: string;
-		password: string;
-		createdAt: string;
-	};
+	user: string;
 	coWork: {
 		_id: string;
 		name: string;

@@ -28,9 +28,8 @@ export default async function ReservationCart({
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 
-	const profile = await getUserProfile(session.user.token);
-	var createdAt = new Date(InterfaceReservation.createdAt);
-	console.log(InterfaceReservation);
+	const profile = await getUserProfile(InterfaceReservation.user);
+
 	return (
 		<main className="bg-slate-100 m-5 p-5 w-full">
 			<div className="text-2x1">{InterfaceReservation.coWork.name}</div>
@@ -38,7 +37,7 @@ export default async function ReservationCart({
 				<tbody>
 					<tr>
 						<td>User</td>
-						<td>{InterfaceReservation.user.name}</td>
+						<td>{profile.name}</td>
 					</tr>
 					<tr>
 						<td>Start Time</td>
