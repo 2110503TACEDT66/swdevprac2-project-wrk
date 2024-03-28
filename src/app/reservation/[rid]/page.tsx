@@ -7,11 +7,7 @@ import getUserProfile from '@/libs/getUserProfile';
 import UpdateReservation from '@/components/UpdateReservation';
 import DeleteReservation from '@/components/DeleteReservation';
 
-export default async function ReservationDetailPage({
-	params,
-}: {
-	params: {rid: string};
-}) {
+export default async function ReservationDetailPage({params,}: {params: {rid: string};}) {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 
@@ -22,25 +18,6 @@ export default async function ReservationDetailPage({
 		<main className="text-center p-5">
 			<h1 className="text-lg font-medium ">{ReservationDetail.data.name}</h1>
 			<div className="flex flex-row my-5 flex-wrap ml-[15%] w-[100%]">
-				{/* 
-_id
-660260f60866cbce4a570811
-user
-6602606a0866cbce4a57080c
-coWork
-6601c01ac6ee26d17685b51f
-date
-"2024-05-11"
-startTime
-"19:00:00"
-endTime
-"23:00:00"
-table
-"A5-1732"
-createdAt
-2024-03-26T05:45:26.130+00:00
-__v
-0 */}
 				<div className="text-md mx-5 text-left m-5 ml-[5%] w-[50%]">
 					<div className="text-md m-5">
 						User Id : {ReservationDetail.data.user}
@@ -62,7 +39,7 @@ __v
 						Table: {ReservationDetail.data.table}
 					</div>
 					<div className="block">
-						<UpdateReservation params={params} />
+						<UpdateReservation  params={params} />
 						<DeleteReservation params={params} />
 					</div>
 				</div>

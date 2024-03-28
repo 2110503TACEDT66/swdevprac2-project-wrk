@@ -5,29 +5,24 @@ import {redirect} from 'next/navigation';
 import updateReservation from '@/libs/updateReservation';
 import getUserProfile from '@/libs/getUserProfile';
 
-export default async function updatereservation({
-	params,
-}: {
-	params: {rid: string};
-}) {
+export default async function updatereservation({params}: {params: {rid: string}}) {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 	const proflie = await getUserProfile(session.user.token);
-	const CoworkDetail = await getReservation(session.user.token, params.rid);
-	const ReservationDetail = await getReservation(proflie, params.rid);
+    const ReservationDetail = await getReservation(proflie, params.rid);
 	const UpdateReservation = async (UpdateReservation: FormData) => {
 		'use server';
-		const startTime = UpdateReservation.get('startTime');
-		const endTime = UpdateReservation.get('endTime');
+		const StartTime = UpdateReservation.get('startTime');
+		const EndTime = UpdateReservation.get('endTime');
 
 		const item: any = {
 			id: params.rid,
-			startTime: startTime,
-			endTime: endTime,
+			startTime: StartTime,
+			endTime: EndTime,
 		};
 
 		try {
-			const user = await updateReservation(session.user.token, params.rid);
+			const user = await updateReservation(session.user.token, item, ReservationDetail);
 		} catch (error) {
 			console.log(error);
 		}
@@ -64,7 +59,7 @@ export default async function updatereservation({
 					required
 					id="endTime"
 					name="endTime"
-					placeholder={CoworkDetail.data.endTime}
+					placeholder={ReservationDetail.data.endTime}
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>

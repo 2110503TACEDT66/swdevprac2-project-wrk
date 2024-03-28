@@ -1,5 +1,5 @@
-export default async function updateCoWork(token: string, coworkItem: any){
-    const response = await fetch(`http://localhost:5050/api/v1/reservation/${coworkItem.id}`, {
+export default async function updateReservation(token: string, coworkItem: any,ReservationDetail :any){
+    const response = await fetch(`http://localhost:5050/api/v1/coWork/${ReservationDetail.data.coWork._id}/reservations`, {
         method: 'PUT',
         headers: {
             authorization: `Bearer ${token}`,
@@ -10,6 +10,12 @@ export default async function updateCoWork(token: string, coworkItem: any){
             endTime: coworkItem.endTime,
         })
     })
+
+	// console.log(ReservationDetail.data.coWork._id)
+	console.log(coworkItem.startTime)
+	console.log(coworkItem.endTime)
+	console.log(token)
+
 
 
     const json = await response.json()
