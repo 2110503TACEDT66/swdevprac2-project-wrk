@@ -21,13 +21,15 @@ export default async function ReservationCart({InterfaceReservation} :{Interface
 
 	const profile = await getUserProfile(session.user.token);
 	var createdAt = new Date(InterfaceReservation.createdAt);
-
+	console.log(profile)
 	return (
 		<main className="bg-slate-100 m-5 p-5">
-			<div className="text-2x1">{profile.data.name}</div>
+			<div className="text-2x1">{InterfaceReservation.coWork.name}</div>
 			<table className="table-auto border-separate border-spacing-2"><tbody>
-				<tr><td>Email</td><td>{profile.data.email}</td></tr>
-				<tr><td>Tel.</td><td>{profile.data.tel}</td></tr>
+				<tr><td>User</td><td>{profile.data.name}</td></tr>
+				<tr><td>Start Time</td><td>{InterfaceReservation.startTime}</td></tr>
+				<tr><td>End Time</td><td>{InterfaceReservation.endTime}</td></tr>
+				<tr><td>Co-working Space Tel.</td><td>{InterfaceReservation.coWork.tel}</td></tr>
 				<tr><td>CreatedAt</td><td>{createdAt.toString()}</td></tr>
 				</tbody></table>
 		</main>

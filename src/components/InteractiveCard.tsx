@@ -2,7 +2,7 @@
 import styles from './productcard.module.css'
 import Image from 'next/image'
 
-export default function InteractiveCard( {children,contentName} : {children:React.ReactNode,contentName:string}) {
+export default function InteractiveCard( {children,contentName} : {children:React.ReactNode,contentName?:string}) {
 
     function onCarselected(){
         alert("You select " + contentName)
