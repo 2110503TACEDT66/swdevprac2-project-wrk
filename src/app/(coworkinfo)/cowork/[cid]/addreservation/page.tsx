@@ -6,35 +6,28 @@ import getUserProfile from '@/libs/getUserProfile';
 import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getCowork from '@/libs/getCowork';
+import addReservation from '@/libs/addReservation';
 
 export default async function AddReservationPage({
 	params,
 }: {
 	params: {cid: string};
 }) {
-	const addReservation = async (addReservationForm: FormData) => {
+	const addReservationFunc = async (addReservationForm: FormData) => {
 		'use server';
 
 		const session = await getServerSession(authOptions);
 		if (!session || !session.user.token) return null;
 
-		const userId = getUserProfile(session.user._id);
+		const userId = await getUserProfile(session.user._id);
 		const coworkObj = await getCowork(params.cid);
 		const date = addReservationForm.get('date');
 		const table = addReservationForm.get('table');
-		const Start_time = addReservationForm.get('Start-time');
-		const End_time = addReservationForm.get('End-time');
+		const startTime = addReservationForm.get('Start-time');
+		const endTime = addReservationForm.get('End-time');
 
 		try {
-			await dbConnect();
-			const reservation = await Reservation.create({
-				user: userId,
-				coWork: coworkObj,
-				date: date,
-				startTime: Start_time,
-				endTime: End_time,
-				table: table,
-			});
+			await addReservation(session.user.token,params.cid,userId,date,startTime,endTime,table){
 		} catch (error) {
 			console.log(error);
 		}
@@ -43,7 +36,7 @@ export default async function AddReservationPage({
 	};
 
 	return (
-		<form action={addReservation} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
+		<form action={addReservationFunc} className="my-[10%] mx-[25%] w-[80%] h-[60%]">
 			<div className="text-xl text-orange-500 font-medium m-5">
 				New Add Reservation
 			</div>
