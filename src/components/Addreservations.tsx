@@ -12,7 +12,7 @@ export default function Addreservation() {
                 hover:bg-orange-700 hover:text-white hover:border-transparent"
 			onClick={(e) => {
 				e.stopPropagation();
-				router.push('/newReservation');
+				router.push('/cowork');
 			}}
 		>
 			Add New Reservation
