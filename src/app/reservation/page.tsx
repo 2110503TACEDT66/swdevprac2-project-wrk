@@ -19,10 +19,7 @@ export default async function AllCoWork() {
 		<main className="text-center">
 			<div className="text-3xl font-medium text-orange-500 m-5">Reservation</div>
 			<ReservationCatalog ReservationJson={Reservations} />
-			{
-				(proflie.data.role === 'admin')?
-				<Addreservation /> : null
-			}
+			<Addreservation />
 		</main>
 	);
 }
