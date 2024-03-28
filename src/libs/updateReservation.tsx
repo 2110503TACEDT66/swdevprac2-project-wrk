@@ -1,5 +1,5 @@
-export default async function updateReservation(token: string, coworkItem: any,coworkid :string){
-    const response = await fetch(`http://localhost:5050/api/v1/coWork/${coworkid}/reservations`, {
+export default async function updateReservation(token: string, coworkItem: any){
+    const response = await fetch(`http://localhost:5050/api/v1/reservation/${coworkItem.id}`, {
         method: 'PUT',
         headers: {
             authorization: `Bearer ${token}`,

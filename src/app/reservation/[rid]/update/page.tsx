@@ -22,7 +22,7 @@ export default async function updatereservation({params}: {params: {rid: string}
 		};
 
 		try {
-			const user = await updateReservation(session.user.token, item, ReservationDetail);
+			const user = await updateReservation(session.user.token, item);
 		} catch (error) {
 			console.log(error);
 		}
