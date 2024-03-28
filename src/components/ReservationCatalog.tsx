@@ -6,14 +6,22 @@ export interface reservationObj {
 
 interface reservationItem {
 	_id: string;
-	user: string;
+	user: {
+		_id: string;
+		name: string;
+		tel: string;
+		email: string;
+		role: string;
+		password: string;
+		createdAt: string;
+	};
 	coWork: {
 		_id: string;
 		name: string;
 		province: string;
 		tel: string;
 		id: string;
-	}
+	};
 	date: string;
 	startTime: string;
 	endTime: string;
@@ -28,11 +36,11 @@ import getUserProfile from '@/libs/getUserProfile';
 import ReservationCart from './ReservationCart';
 
 export default async function ReservationCatalog({
-	ReservationJson
+	ReservationJson,
 }: {
 	ReservationJson: reservationObj;
 }) {
-	const carJsonRedy = await ReservationJson;
+	const reservationJsonRedy = await ReservationJson;
 
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
@@ -41,7 +49,7 @@ export default async function ReservationCatalog({
 
 	return (
 		<>
-			Explore {carJsonRedy.count} Reservation in your catalog
+			Explore {reservationJsonRedy.count} Reservation in your catalog
 			<div
 				style={{
 					margin: '20px',
@@ -50,11 +58,12 @@ export default async function ReservationCatalog({
 					flexWrap: 'wrap',
 				}}
 			>
-				{carJsonRedy.data.map((reservationItem: reservationItem) => (
-					<Link href={`/reservation/${reservationItem._id}`} className="w-[100%] sm:w-[50%] md:w-[30%] 1g:w-[25%] p-2 sm:p-4 md:p-4 1g:p-8">
-						<ReservationCart
-							InterfaceReservation ={reservationItem}
-						/>
+				{reservationJsonRedy.data.map((reservationItem: reservationItem) => (
+					<Link
+						href={`/reservation/${reservationItem._id}`}
+						className="w-[100%] sm:w-[50%] md:w-[30%] 1g:w-[25%] p-2 sm:p-4 md:p-4 1g:p-8"
+					>
+						<ReservationCart InterfaceReservation={reservationItem} />
 					</Link>
 				))}
 			</div>

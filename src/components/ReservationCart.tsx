@@ -7,7 +7,7 @@ interface reservationItem {
 		province: string;
 		tel: string;
 		id: string;
-	}
+	};
 	date: string;
 	startTime: string;
 	endTime: string;
@@ -19,26 +19,37 @@ interface reservationItem {
 import {getServerSession} from 'next-auth';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
-import getCowork from '@/libs/getCowork';
 
-export default async function ReservationCart({InterfaceReservation} :{InterfaceReservation :reservationItem}) {
-
+export default async function ReservationCart({
+	InterfaceReservation,
+}: {
+	InterfaceReservation: reservationItem;
+}) {
 	const session = await getServerSession(authOptions);
 	if (!session || !session.user.token) return null;
 
 	const profile = await getUserProfile(session.user.token);
 	var createdAt = new Date(InterfaceReservation.createdAt);
-
+	console.log(InterfaceReservation);
 	return (
-		<main className="bg-slate-100 m-5 p-5 w-[80%]">
+		<main className="bg-slate-100 m-5 p-5 w-full">
 			<div className="text-2x1">{InterfaceReservation.coWork.name}</div>
-			<table className="table-auto border-separate border-spacing-2"><tbody>
-				<tr><td>User</td><td>{profile.data.name}</td></tr>
-				<tr><td>Start Time</td><td>{InterfaceReservation.startTime}</td></tr>
-				<tr><td>End Time</td><td>{InterfaceReservation.endTime}</td></tr>
-				<tr><td>Co-working Space Tel.</td><td>{InterfaceReservation.coWork.tel}</td></tr>
-				<tr><td>CreatedAt</td><td>{createdAt.toString()}</td></tr>
-				</tbody></table>
+			<table className="table-auto border-separate border-spacing-2">
+				<tbody>
+					<tr>
+						<td>User</td>
+						<td>{InterfaceReservation.user.name}</td>
+					</tr>
+					<tr>
+						<td>Start Time</td>
+						<td>{InterfaceReservation.startTime}</td>
+					</tr>
+					<tr>
+						<td>End Time</td>
+						<td>{InterfaceReservation.endTime}</td>
+					</tr>
+				</tbody>
+			</table>
 		</main>
 	);
 }
