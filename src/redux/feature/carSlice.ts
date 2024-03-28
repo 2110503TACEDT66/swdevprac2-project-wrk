@@ -16,7 +16,7 @@ export const cartSlice = createSlice({
         },
         removeReservation : (state, action:PayloadAction<ReservationItem>)=>{
             const remainItems = state.carItems.filter(obj => {
-                return(obj.name !== action.payload.name)
+                // return(obj.name !== action.payload.name)
             })
             state.carItems = remainItems
         }
