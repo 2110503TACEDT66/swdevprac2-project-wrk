@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import getCowork from '@/libs/getCowork';
 import Link from 'next/link';
@@ -6,6 +7,7 @@ import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import getUserProfile from '@/libs/getUserProfile';
 import UpdateCoWork from '@/components/UpdateCoWork';
 import DeleteCoWork from '@/components/DeleteCoWork';
+import router from 'next/navigation';
 
 export default async function CoworkDetailPage({
 	params,
@@ -48,7 +50,7 @@ export default async function CoworkDetailPage({
 					<div className="text-md m-5">Tel: {CoworkDetail.data.tel}</div>
 
 					<Link
-						href={`/reservations?id=${params.cid}&name=${CoworkDetail.data.name}`}
+						href={`/cowork/${params.cid}/addreservation`}
 					>
 						<button
 							className="block rounded-md bg-orange-400 hover:bg-orange-600 px-3 py-1
