@@ -79,7 +79,7 @@ export default async function AddReservationPage({params}: {params: {cid: string
 					required
 					id="Start-time"
 					name="Start-time"
-					placeholder="Start time"
+					placeholder="00:00:00"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
@@ -92,7 +92,7 @@ export default async function AddReservationPage({params}: {params: {cid: string
 					required
 					id="End-time"
 					name="End-time"
-					placeholder="End time"
+					placeholder="00:00:00"
 					className="bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus: outline-none focus: border-blue-400"
 				/>
 			</div>
