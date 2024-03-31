@@ -8,7 +8,7 @@ export default async function addReservation(
 	table: string
 ) {
 	const response = await fetch(
-		`http://localhost:5050/api/v1/coWork/${coworkId}/reservations/`,
+		`${process.env.BACKEND_URL}/api/v1/coWork/${coworkId}/reservations/`,
 		{
 			method: 'POST',
 			headers: {
