@@ -30,10 +30,9 @@ export default function Banner() {
 				alt="cover"
 				src={covers[index % 4]}
 				fill={true}
-				objectFit="cover"
 				priority={true}
 				placeholder="empty"
-				className="position-absolute -z-50"
+				className="position-absolute -z-50 object-cover"
 			/>
 			<div className="text-center m-[5%] color-black content-center justify-center item-center">
 				<p className="p-[5%] text-xl font-semibold md:text-3xl">
