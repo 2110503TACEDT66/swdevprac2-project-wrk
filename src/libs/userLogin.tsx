@@ -16,6 +16,5 @@ export default async function userLogin(
 	if (!response.ok) {
 		throw new Error('Failed to log-in');
 	}
-
 	return await response.json();
 }

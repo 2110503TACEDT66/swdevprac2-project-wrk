@@ -13,7 +13,6 @@ export default async function updateCoWork(token: string, coworkItem: any) {
 			}),
 		}
 	);
-
 	const json = await response.json();
 
 	if (!response.ok) {

@@ -16,7 +16,6 @@ export default async function updateReservation(
 			}),
 		}
 	);
-
 	// console.log(ReservationDetail.data.coWork._id)
 	console.log(coworkItem.startTime);
 	console.log(coworkItem.endTime);
