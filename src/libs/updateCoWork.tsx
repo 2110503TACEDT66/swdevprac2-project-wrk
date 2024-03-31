@@ -1,5 +1,5 @@
 export default async function updateCoWork(token: string, coworkItem: any){
-    const response = await fetch(`http://localhost:5050/api/v1/coWork/${coworkItem.id}`, {
+    const response = await fetch(`https://presentation-day-1-pqbs826g9-wrk-c44e290c.vercel.app/api/v1/coWork/${coworkItem.id}`, {
         method: 'PUT',
         headers: {
             authorization: `Bearer ${token}`,
